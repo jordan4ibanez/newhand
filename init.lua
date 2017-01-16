@@ -4,11 +4,11 @@ minetest.register_node("newhand:hand", {
 	on_place = function(itemstack, placer, pointed_thing)
 		--do nothing
 	end,
-	visual_scale = 0.25,
-	wield_scale = {x=0.25,y=0.25,z=0.25},
+	visual_scale = 1,
+	wield_scale = {x=1,y=1,z=1},
 	paramtype = "light",
 	drawtype = "mesh",
-	mesh = "hand.x",
+	mesh = "hand.b3d",
 	node_placement_prediction = false,
 })
 
