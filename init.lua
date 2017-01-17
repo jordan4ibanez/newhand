@@ -10,7 +10,6 @@ minetest.register_node("newhand:hand", {
 	drawtype = "mesh",
 	mesh = "hand.b3d",
 	node_placement_prediction = false,
-	visible = false,
 })
 
 minetest.register_on_joinplayer(function(player)
