@@ -2,7 +2,7 @@ minetest.register_node("newhand:hand", {
 	description = "",
 	tiles = {"character.png"},
 	on_place = function(itemstack, placer, pointed_thing)
-		--do nothing
+		return
 	end,
 	visual_scale = 1,
 	wield_scale = {x=1,y=1,z=1},
