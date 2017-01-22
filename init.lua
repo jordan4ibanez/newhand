@@ -5,7 +5,7 @@ minetest.register_node("newhand:hand", {
 		--do nothing
 	end,
 	visual_scale = 1,
-	wield_scale = {x=0.7,y=0.7,z=0.7},
+	wield_scale = {x=1,y=1,z=1},
 	paramtype = "light",
 	drawtype = "mesh",
 	mesh = "hand.b3d",
