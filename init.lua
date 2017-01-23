@@ -13,7 +13,9 @@ if simple_skins == true then
 			description = "",
 			tiles = {texture..".png"},
 			on_place = function(itemstack, placer, pointed_thing)
-				return
+				if minetest.get_node(pointed_thing.under).name == "default:chest_locked" then
+					minetest.item_place(itemstack, placer, pointed_thing, param2)
+				end
 			end,
 			visual_scale = 1,
 			wield_scale = {x=1,y=1,z=1},
@@ -49,7 +51,9 @@ else
 		description = "",
 		tiles = {"character.png"},
 		on_place = function(itemstack, placer, pointed_thing)
-			return
+			if minetest.get_node(pointed_thing.under).name == "default:chest_locked" then
+				minetest.item_place(itemstack, placer, pointed_thing, param2)
+			end
 		end,
 		visual_scale = 1,
 		wield_scale = {x=1,y=1,z=1},
