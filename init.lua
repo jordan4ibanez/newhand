@@ -12,6 +12,7 @@ if simple_skins == true then
 		minetest.register_node("newhand:"..texture, {
 			description = "",
 			tiles = {texture..".png"},
+			inventory_image = "newhand_inv.png",
 			on_place = function(itemstack, placer, pointed_thing)
 				if minetest.get_node(pointed_thing.under).name == "default:chest_locked" then
 					minetest.item_place(itemstack, placer, pointed_thing, param2)
@@ -50,6 +51,7 @@ else
 	minetest.register_node("newhand:hand", {
 		description = "",
 		tiles = {"character.png"},
+		inventory_image = "newhand_inv.png",
 		on_place = function(itemstack, placer, pointed_thing)
 			if minetest.get_node(pointed_thing.under).name == "default:chest_locked" then
 				minetest.item_place(itemstack, placer, pointed_thing, param2)
