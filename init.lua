@@ -29,6 +29,7 @@ if simple_skins == true then
 	--change the player's hand to their skin
 	minetest.register_on_joinplayer(function(player)
 		local skin = skins.skins[player:get_player_name()]
+		player:get_inventory():set_size("hand", 1)
 		player:get_inventory():set_stack("hand", 1, "newhand:"..skin)
 	end)
 	
