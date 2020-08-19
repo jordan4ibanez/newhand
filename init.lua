@@ -40,7 +40,8 @@ if simple_skins == true then
 			local skin = skins.skins[name]
 			
 			if skin ~= newhand_oldskin[name] then
-				player:get_inventory():set_stack("hand", 1, "newhand:"..skin)
+                          player:get_inventory():set_size("hand", 1)
+                          player:get_inventory():set_stack("hand", 1, "newhand:"..skin)
 			end
 			
 			newhand_oldskin[name] = skin
@@ -67,6 +68,7 @@ else
 	})
 
 	minetest.register_on_joinplayer(function(player)
+		player:get_inventory():set_size("hand", 1)
 		player:get_inventory():set_stack("hand", 1, "newhand:hand")
 	end)
 end
