@@ -1,4 +1,6 @@
-local function register_hand(name, texture)
+newhand = {}
+
+function newhand.register_hand(name, texture)
 	minetest.register_node(name, {
 		description = "",
 		tiles = {texture},
@@ -19,13 +21,17 @@ local function register_hand(name, texture)
 end
 
 local oldhand = {}
-local function set_hand(player, hand)
+
+function newhand.set_hand(player, hand)
 	local name = player:get_player_name()
 	if hand ~= oldhand[name] then
-		player:get_inventory():set_size("hand", 1)
-		player:get_inventory():set_stack("hand", 1, hand)
+		if hand and minetest.registered_nodes[hand] then
+			player:get_inventory():set_size("hand", 1)
+			player:get_inventory():set_stack("hand", 1, hand)
+		else
+			player:get_inventory():set_size("hand", 0)
+		end
 	end
-
 	oldhand[name] = hand
 end
 
@@ -33,7 +39,7 @@ end
 if minetest.get_modpath("simple_skins") then
 	--generate a node for every skin
 	for _,texture in pairs(skins.list) do
-		register_hand("newhand:"..texture, texture..".png")
+		newhand.register_hand("newhand:"..texture, texture..".png")
 	end
 
 	--change the player's hand to their skin
@@ -46,14 +52,14 @@ if minetest.get_modpath("simple_skins") then
 	minetest.register_globalstep(function(dtime)
 		for _,player in ipairs(minetest.get_connected_players()) do
 			local skin = skins.skins[player:get_player_name()]
-			set_hand(player, "newhand:"..skin)
+			newhand.set_hand(player, "newhand:"..skin)
 		end
 	end)
 
 --do default skin if no skin mod installed
 else
-	register_hand("newhand:hand", "character.png")
+	newhand.register_hand("newhand:hand", "character.png")
 	minetest.register_on_joinplayer(function(player)
-		set_hand(player, "newhand:hand")
+		newhand.set_hand(player, "newhand:hand")
 	end)
 end
